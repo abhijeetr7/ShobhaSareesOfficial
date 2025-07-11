@@ -1,0 +1,748 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ShobhaSareesOfficial — Weaving Stories in Six Yards</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts - Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #fdfaf6; /* Light cream background */
+            color: #333;
+        }
+        .hero-banner {
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://placehold.co/1920x800/e0b987/ffffff?text=Elegant+Saree+Collection') no-repeat center center/cover;
+            min-height: 70vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+        .section-title {
+            position: relative;
+            display: inline-block;
+            padding-bottom: 0.5rem;
+            margin-bottom: 2rem;
+        }
+        .section-title::after {
+            content: '';
+            position: absolute;
+            left: 50%;
+            bottom: 0;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background-color: #a0522d; /* Sienna */
+            border-radius: 9999px;
+        }
+        .floating-socials {
+            position: fixed;
+            right: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+        .floating-socials a {
+            background-color: #a0522d;
+            color: white;
+            padding: 0.75rem;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s ease-in-out;
+        }
+        .floating-socials a:hover {
+            transform: scale(1.1);
+        }
+        .product-card {
+            transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+        }
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+        }
+        /* Newsletter Modal */
+        .newsletter-modal {
+            display: none; /* Hidden by default */
+            position: fixed; /* Stay in place */
+            z-index: 2000; /* Sit on top */
+            left: 0;
+            top: 0;
+            width: 100%; /* Full width */
+            height: 100%; /* Full height */
+            overflow: auto; /* Enable scroll if needed */
+            background-color: rgba(0,0,0,0.6); /* Black w/ opacity */
+            justify-content: center;
+            align-items: center;
+        }
+        .newsletter-modal-content {
+            background-color: #fefefe;
+            margin: auto;
+            padding: 2rem;
+            border-radius: 0.75rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            max-width: 500px;
+            width: 90%;
+            text-align: center;
+            position: relative;
+        }
+        .close-button {
+            position: absolute;
+            top: 0.75rem;
+            right: 0.75rem;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #aaa;
+        }
+        .close-button:hover {
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation Bar -->
+    <nav class="bg-white shadow-md py-4 px-6 sticky top-0 z-10">
+        <div class="container mx-auto flex justify-between items-center">
+            <a href="#" class="text-2xl font-bold text-gray-800 tracking-wide">ShobhaSareesOfficial</a>
+            <div class="hidden md:flex space-x-8">
+                <a href="#home" class="text-gray-600 hover:text-a0522d transition duration-300">Home</a>
+                <a href="#about" class="text-gray-600 hover:text-a0522d transition duration-300">About Artist</a>
+                <a href="#collection" class="text-gray-600 hover:text-a0522d transition duration-300">Collection</a>
+                <a href="#store" class="text-gray-600 hover:text-a0522d transition duration-300">Store</a>
+                <a href="#testimonials" class="text-gray-600 hover:text-a0522d transition duration-300">Testimonials</a>
+                <a href="#gallery" class="text-gray-600 hover:text-a0522d transition duration-300">Gallery</a>
+                <a href="#blog" class="text-gray-600 hover:text-a0522d transition duration-300">Blog</a>
+                <a href="#contact" class="text-gray-600 hover:text-a0522d transition duration-300">Contact</a>
+            </div>
+            <div class="md:hidden">
+                <button id="mobile-menu-button" class="text-gray-600 focus:outline-none">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
+            </div>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden mt-4 space-y-2 text-center">
+            <a href="#home" class="block py-2 text-gray-600 hover:text-a0522d transition duration-300">Home</a>
+            <a href="#about" class="block py-2 text-gray-600 hover:text-a0522d transition duration-300">About Artist</a>
+            <a href="#collection" class="block py-2 text-gray-600 hover:text-a0522d transition duration-300">Collection</a>
+            <a href="#store" class="block py-2 text-gray-600 hover:text-a0522d transition duration-300">Store</a>
+            <a href="#testimonials" class="block py-2 text-gray-600 hover:text-a0522d transition duration-300">Testimonials</a>
+            <a href="#gallery" class="block py-2 text-gray-600 hover:text-a0522d transition duration-300">Gallery</a>
+            <a href="#blog" class="block py-2 text-gray-600 hover:text-a0522d transition duration-300">Blog</a>
+            <a href="#contact" class="block py-2 text-gray-600 hover:text-a0522d transition duration-300">Contact</a>
+        </div>
+    </nav>
+
+    <!-- Floating Social Icons -->
+    <div class="floating-socials">
+        <a href="https://www.instagram.com/shobhasareesofficial" target="_blank" aria-label="Instagram"><i class="fab fa-instagram text-xl"></i></a>
+        <a href="https://www.pinterest.com/shobhasareesofficial" target="_blank" aria-label="Pinterest"><i class="fab fa-pinterest-p text-xl"></i></a>
+        <a href="https://wa.me/1234567890" target="_blank" aria-label="WhatsApp"><i class="fab fa-whatsapp text-xl"></i></a>
+        <a href="https://www.youtube.com/@shobhasareesofficial" target="_blank" aria-label="YouTube"><i class="fab fa-youtube text-xl"></i></a>
+        <a href="https://www.facebook.com/shobhasareesofficial" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f text-xl"></i></a>
+        <!-- Add your GitHub/Portfolio link here -->
+        <a href="https://github.com/yourusername/shobhasareesofficial" target="_blank" aria-label="GitHub"><i class="fab fa-github text-xl"></i></a>
+    </div>
+
+    <main>
+        <!-- Homepage Section -->
+        <section id="home" class="hero-banner text-white py-16 px-4">
+            <div class="container mx-auto">
+                <h1 class="text-5xl md:text-6xl font-bold mb-4 leading-tight">Weaving stories in six yards.</h1>
+                <p class="text-xl md:text-2xl mb-8">Discover the timeless elegance of handmade sarees, crafted with passion.</p>
+                <div class="flex flex-col sm:flex-row justify-center items-center gap-4">
+                    <a href="#collection" class="bg-a0522d hover:bg-red-800 text-white font-semibold py-3 px-8 rounded-full shadow-lg transition duration-300 w-full sm:w-auto">Explore Collection</a>
+                    <a href="#store" class="bg-white text-a0522d hover:bg-gray-100 font-semibold py-3 px-8 rounded-full shadow-lg transition duration-300 w-full sm:w-auto">Shop Now</a>
+                </div>
+                <div class="mt-12 max-w-2xl mx-auto bg-white bg-opacity-10 p-6 rounded-lg shadow-md">
+                    <h3 class="text-2xl font-semibold mb-3">Our Brand Story</h3>
+                    <p class="text-lg leading-relaxed">ShobhaSareesOfficial is a celebration of heritage, craftsmanship, and the enduring beauty of Indian textiles. Each saree is a labor of love, meticulously handwoven or embellished by skilled artisans, bringing a piece of art into your wardrobe.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- About the Artist Section -->
+        <section id="about" class="py-16 bg-fdfaf6 px-4">
+            <div class="container mx-auto">
+                <h2 class="text-4xl font-bold text-center mb-8 section-title text-gray-800">About the Artist</h2>
+                <div class="flex flex-col md:flex-row items-center md:space-x-12">
+                    <div class="md:w-1/2 mb-8 md:mb-0">
+                        <img src="https://placehold.co/600x400/e0b987/ffffff?text=Artist+Portrait" alt="Artist Portrait" class="rounded-lg shadow-xl w-full h-auto object-cover">
+                    </div>
+                    <div class="md:w-1/2 text-lg leading-relaxed text-gray-700">
+                        <p class="mb-4">Meet [Artist's Name], the heart and soul behind ShobhaSareesOfficial. Her journey into the world of textiles began with a deep-rooted fascination for traditional Indian weaves and the stories they tell. Growing up surrounded by the vibrant colors and intricate patterns of sarees, she felt an undeniable pull to preserve and innovate this ancient art form.</p>
+                        <p class="mb-4">Her inspiration stems from nature's palette, historical motifs, and the rich cultural tapestry of India. Every design is a thoughtful blend of contemporary aesthetics and timeless techniques. She believes that a saree is more than just clothing; it's an expression of identity, grace, and heritage.</p>
+                        <p class="mb-6">The process is a meticulous dance of creativity and precision, from sourcing the finest threads to the final embellishments. Watch a glimpse of the magic below:</p>
+                        <div class="w-full aspect-video bg-gray-200 rounded-lg shadow-md flex items-center justify-center">
+                            <!-- Placeholder for embedded video -->
+                            <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen class="w-full h-full rounded-lg"></iframe>
+                            <!-- Replace with your actual video embed code -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Saree Collection Gallery Section -->
+        <section id="collection" class="py-16 bg-white px-4">
+            <div class="container mx-auto">
+                <h2 class="text-4xl font-bold text-center mb-8 section-title text-gray-800">Saree Collection</h2>
+
+                <!-- Filter Options -->
+                <div class="flex flex-wrap justify-center gap-4 mb-12">
+                    <select class="p-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-a0522d">
+                        <option>All Fabrics</option>
+                        <option>Cotton</option>
+                        <option>Silk</option>
+                        <option>Linen</option>
+                        <option>Georgette</option>
+                    </select>
+                    <select class="p-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-a0522d">
+                        <option>All Colors</option>
+                        <option>Red</option>
+                        <option>Blue</option>
+                        <option>Green</option>
+                        <option>Gold</option>
+                    </select>
+                    <select class="p-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-a0522d">
+                        <option>All Occasions</option>
+                        <option>Casual</option>
+                        <option>Festive</option>
+                        <option>Wedding</option>
+                        <option>Party</option>
+                    </select>
+                    <input type="range" min="0" max="10000" value="5000" class="w-48 accent-a0522d">
+                    <span class="text-gray-700">Price: ₹0 - ₹10000</span>
+                </div>
+
+                <!-- Saree Grid -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+                    <!-- Product Card 1 -->
+                    <div class="bg-fdfaf6 rounded-lg shadow-md overflow-hidden product-card">
+                        <img src="https://placehold.co/400x500/e0b987/ffffff?text=Cotton+Saree" alt="Cotton Saree" class="w-full h-72 object-cover">
+                        <div class="p-5">
+                            <h3 class="text-xl font-semibold text-gray-800 mb-2">Handloom Cotton Saree</h3>
+                            <p class="text-gray-600 mb-3">Lightweight and breathable, perfect for daily wear.</p>
+                            <div class="flex justify-between items-center">
+                                <span class="text-2xl font-bold text-a0522d">₹2,500</span>
+                                <a href="#store" class="bg-a0522d hover:bg-red-800 text-white py-2 px-4 rounded-full text-sm transition duration-300">View Details</a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Product Card 2 -->
+                    <div class="bg-fdfaf6 rounded-lg shadow-md overflow-hidden product-card">
+                        <img src="https://placehold.co/400x500/d4a017/ffffff?text=Silk+Saree" alt="Silk Saree" class="w-full h-72 object-cover">
+                        <div class="p-5">
+                            <h3 class="text-xl font-semibold text-gray-800 mb-2">Banarasi Silk Saree</h3>
+                            <p class="text-gray-600 mb-3">Exquisite silk with intricate zari work, ideal for weddings.</p>
+                            <div class="flex justify-between items-center">
+                                <span class="text-2xl font-bold text-a0522d">₹12,000</span>
+                                <a href="#store" class="bg-a0522d hover:bg-red-800 text-white py-2 px-4 rounded-full text-sm transition duration-300">View Details</a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Product Card 3 -->
+                    <div class="bg-fdfaf6 rounded-lg shadow-md overflow-hidden product-card">
+                        <img src="https://placehold.co/400x500/8b4513/ffffff?text=Linen+Saree" alt="Linen Saree" class="w-full h-72 object-cover">
+                        <div class="p-5">
+                            <h3 class="text-xl font-semibold text-gray-800 mb-2">Handwoven Linen Saree</h3>
+                            <p class="text-gray-600 mb-3">Elegant and comfortable, perfect for a sophisticated look.</p>
+                            <div class="flex justify-between items-center">
+                                <span class="text-2xl font-bold text-a0522d">₹4,800</span>
+                                <a href="#store" class="bg-a0522d hover:bg-red-800 text-white py-2 px-4 rounded-full text-sm transition duration-300">View Details</a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Product Card 4 -->
+                    <div class="bg-fdfaf6 rounded-lg shadow-md overflow-hidden product-card">
+                        <img src="https://placehold.co/400x500/b0c4de/ffffff?text=Georgette+Saree" alt="Georgette Saree" class="w-full h-72 object-cover">
+                        <div class="p-5">
+                            <h3 class="text-xl font-semibold text-gray-800 mb-2">Embroidered Georgette Saree</h3>
+                            <p class="text-gray-600 mb-3">Flowy and graceful, adorned with delicate embroidery.</p>
+                            <div class="flex justify-between items-center">
+                                <span class="text-2xl font-bold text-a0522d">₹6,500</span>
+                                <a href="#store" class="bg-a0522d hover:bg-red-800 text-white py-2 px-4 rounded-full text-sm transition duration-300">View Details</a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- More product cards can be added here -->
+                </div>
+
+                <!-- Instagram Posts/Reels Placeholder -->
+                <div class="mt-12 text-center">
+                    <h3 class="text-2xl font-semibold text-gray-800 mb-4">See Our Sarees in Action on Instagram!</h3>
+                    <p class="text-gray-600 mb-6">Follow us <a href="https://www.instagram.com/shobhasareesofficial" target="_blank" class="text-a0522d hover:underline">@ShobhaSareesOfficial</a> for daily inspiration and new arrivals.</p>
+                    <div class="bg-gray-100 p-8 rounded-lg shadow-inner text-gray-500">
+                        <!-- Placeholder for Instagram embed widget or API fetched content -->
+                        <i class="fab fa-instagram text-6xl mb-4"></i>
+                        <p class="text-lg">Instagram feed integration coming soon! (e.g., using Graph API or SnapWidget)</p>
+                        <div class="mt-4 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
+                            <img src="https://placehold.co/250x250/cccccc/ffffff?text=IG+1" alt="Instagram Image 1" class="w-full h-auto rounded-md shadow-sm">
+                            <img src="https://placehold.co/250x250/cccccc/ffffff?text=IG+2" alt="Instagram Image 2" class="w-full h-auto rounded-md shadow-sm">
+                            <img src="https://placehold.co/250x250/cccccc/ffffff?text=IG+3" alt="Instagram Image 3" class="w-full h-auto rounded-md shadow-sm">
+                            <img src="https://placehold.co/250x250/cccccc/ffffff?text=IG+4" alt="Instagram Image 4" class="w-full h-auto rounded-md shadow-sm">
+                            <img src="https://placehold.co/250x250/cccccc/ffffff?text=IG+5" alt="Instagram Image 5" class="w-full h-auto rounded-md shadow-sm">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- E-Commerce Store Section (Simplified Product Detail) -->
+        <section id="store" class="py-16 bg-fdfaf6 px-4">
+            <div class="container mx-auto">
+                <h2 class="text-4xl font-bold text-center mb-8 section-title text-gray-800">E-Commerce Store</h2>
+                <div class="max-w-4xl mx-auto bg-white rounded-lg shadow-xl p-8 flex flex-col md:flex-row gap-8">
+                    <div class="md:w-1/2">
+                        <img src="https://placehold.co/600x700/e0b987/ffffff?text=Featured+Saree" alt="Featured Saree" class="w-full h-auto rounded-lg shadow-md mb-4">
+                        <div class="grid grid-cols-4 gap-2">
+                            <img src="https://placehold.co/100x120/f0d9c4/ffffff?text=View+1" alt="Saree View 1" class="w-full h-auto rounded-md cursor-pointer hover:opacity-80 transition">
+                            <img src="https://placehold.co/100x120/f0d9c4/ffffff?text=View+2" alt="Saree View 2" class="w-full h-auto rounded-md cursor-pointer hover:opacity-80 transition">
+                            <img src="https://placehold.co/100x120/f0d9c4/ffffff?text=View+3" alt="Saree View 3" class="w-full h-auto rounded-md cursor-pointer hover:opacity-80 transition">
+                            <img src="https://placehold.co/100x120/f0d9c4/ffffff?text=View+4" alt="Saree View 4" class="w-full h-auto rounded-md cursor-pointer hover:opacity-80 transition">
+                        </div>
+                    </div>
+                    <div class="md:w-1/2">
+                        <h3 class="text-3xl font-bold text-gray-800 mb-3">The Royal Blue Silk Saree</h3>
+                        <p class="text-a0522d text-4xl font-extrabold mb-4">₹18,500</p>
+                        <p class="text-gray-700 leading-relaxed mb-6">A masterpiece of handwoven silk, this Royal Blue Saree features intricate gold zari motifs and a contrast pallu. Perfect for grand occasions, it drapes beautifully, exuding timeless elegance and regal charm. Each thread tells a story of tradition and artistry.</p>
+
+                        <div class="mb-6">
+                            <h4 class="font-semibold text-gray-800 mb-2">Details:</h4>
+                            <ul class="list-disc list-inside text-gray-600">
+                                <li>Fabric: Pure Kanchipuram Silk</li>
+                                <li>Color: Royal Blue with Gold Zari</li>
+                                <li>Length: 6.2 meters (with blouse piece)</li>
+                                <li>Wash Care: Dry Clean Only</li>
+                                <li>Availability: In Stock (Limited Quantity)</li>
+                            </ul>
+                        </div>
+
+                        <div class="flex flex-col sm:flex-row items-center gap-4 mb-6">
+                            <button class="bg-a0522d hover:bg-red-800 text-white font-semibold py-3 px-6 rounded-full shadow-lg transition duration-300 w-full sm:flex-grow">
+                                <i class="fas fa-shopping-cart mr-2"></i> Add to Cart
+                            </button>
+                            <button class="bg-green-600 hover:bg-green-700 text-white font-semibold py-3 px-6 rounded-full shadow-lg transition duration-300 w-full sm:flex-grow">
+                                <i class="fas fa-credit-card mr-2"></i> Buy Now
+                            </button>
+                        </div>
+                        <button class="w-full bg-gray-200 hover:bg-gray-300 text-gray-800 font-semibold py-3 px-6 rounded-full transition duration-300">
+                            <i class="fas fa-heart mr-2"></i> Add to Wishlist
+                        </button>
+                        <p class="text-sm text-gray-500 mt-4 text-center">Payment options: COD, Razorpay, Stripe, PayPal (integrations coming soon)</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Testimonials & User Stories Section -->
+        <section id="testimonials" class="py-16 bg-white px-4">
+            <div class="container mx-auto">
+                <h2 class="text-4xl font-bold text-center mb-8 section-title text-gray-800">Customer Love & Stories</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Testimonial Card 1 -->
+                    <div class="bg-fdfaf6 p-6 rounded-lg shadow-md text-center">
+                        <img src="https://placehold.co/100x100/e0b987/ffffff?text=User+1" alt="Customer 1" class="w-24 h-24 rounded-full mx-auto mb-4 object-cover">
+                        <p class="italic text-gray-700 mb-4">"Absolutely stunning saree! The fabric is so soft and the craftsmanship is impeccable. Received so many compliments!"</p>
+                        <p class="font-semibold text-gray-800">- Priya Sharma</p>
+                    </div>
+                    <!-- Testimonial Card 2 -->
+                    <div class="bg-fdfaf6 p-6 rounded-lg shadow-md text-center">
+                        <img src="https://placehold.co/100x100/e0b987/ffffff?text=User+2" alt="Customer 2" class="w-24 h-24 rounded-full mx-auto mb-4 object-cover">
+                        <p class="italic text-gray-700 mb-4">"ShobhaSareesOfficial delivered beyond expectations. The colors are even more vibrant in person. A true work of art!"</p>
+                        <p class="font-semibold text-gray-800">- Anjali Singh</p>
+                    </div>
+                    <!-- Testimonial Card 3 -->
+                    <div class="bg-fdfaf6 p-6 rounded-lg shadow-md text-center">
+                        <img src="https://placehold.co/100x100/e0b987/ffffff?text=User+3" alt="Customer 3" class="w-24 h-24 rounded-full mx-auto mb-4 object-cover">
+                        <p class="italic text-gray-700 mb-4">"I love the unique designs. This saree made me feel so elegant and confident. Highly recommend ShobhaSareesOfficial!"</p>
+                        <p class="font-semibold text-gray-800">- Kavya Reddy</p>
+                    </div>
+                </div>
+                <div class="mt-12 text-center">
+                    <h3 class="text-2xl font-semibold text-gray-800 mb-4">Share Your ShobhaSareesOfficial Look!</h3>
+                    <p class="text-gray-600 mb-6">We'd love to see you in your ShobhaSareesOfficial creation. Upload your photo and story!</p>
+                    <button class="bg-a0522d hover:bg-red-800 text-white font-semibold py-3 px-8 rounded-full shadow-lg transition duration-300">
+                        <i class="fas fa-camera mr-2"></i> Submit Your Look
+                    </button>
+                    <!-- Form for submission would appear here, possibly in a modal -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Gallery (Instagram Auto-Fetch Placeholder) -->
+        <section id="gallery" class="py-16 bg-fdfaf6 px-4">
+            <div class="container mx-auto">
+                <h2 class="text-4xl font-bold text-center mb-8 section-title text-gray-800">Our Instagram Gallery</h2>
+                <p class="text-center text-gray-700 mb-8">Showcasing the beauty of sarees through our latest Instagram posts and reels. Use #ShobhaSareesOfficialStyle to be featured!</p>
+                <div class="bg-white p-8 rounded-lg shadow-xl text-center">
+                    <i class="fab fa-instagram text-8xl text-gray-400 mb-6"></i>
+                    <p class="text-xl text-gray-600 mb-4">This section will dynamically load content from our Instagram using the Graph API or a widget.</p>
+                    <p class="text-lg text-gray-500">Currently displaying placeholder images:</p>
+                    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 mt-6">
+                        <img src="https://placehold.co/250x250/e0b987/ffffff?text=IG+1" alt="Instagram Image 1" class="w-full h-auto rounded-md shadow-sm">
+                        <img src="https://placehold.co/250x250/e0b987/ffffff?text=IG+2" alt="Instagram Image 2" class="w-full h-auto rounded-md shadow-sm">
+                        <img src="https://placehold.co/250x250/e0b987/ffffff?text=IG+3" alt="Instagram Image 3" class="w-full h-auto rounded-md shadow-sm">
+                        <img src="https://placehold.co/250x250/e0b987/ffffff?text=IG+4" alt="Instagram Image 4" class="w-full h-auto rounded-md shadow-sm">
+                        <img src="https://placehold.co/250x250/e0b987/ffffff?text=IG+5" alt="Instagram Image 5" class="w-full h-auto rounded-md shadow-sm">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Blog / Style Tips Section -->
+        <section id="blog" class="py-16 bg-white px-4">
+            <div class="container mx-auto">
+                <h2 class="text-4xl font-bold text-center mb-8 section-title text-gray-800">Blog & Style Tips</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Blog Post 1 -->
+                    <div class="bg-fdfaf6 rounded-lg shadow-md overflow-hidden">
+                        <img src="https://placehold.co/600x400/e0b987/ffffff?text=Draping+Styles" alt="Draping Styles" class="w-full h-48 object-cover">
+                        <div class="p-6">
+                            <h3 class="text-xl font-semibold text-gray-800 mb-2">How to Drape a Saree in 5 Unique Styles</h3>
+                            <p class="text-gray-600 text-sm mb-4">Learn new ways to wear your favorite saree for different occasions.</p>
+                            <a href="#" class="text-a0522d hover:underline font-medium">Read More <i class="fas fa-arrow-right text-sm ml-1"></i></a>
+                        </div>
+                    </div>
+                    <!-- Blog Post 2 -->
+                    <div class="bg-fdfaf6 rounded-lg shadow-md overflow-hidden">
+                        <img src="https://placehold.co/600x400/e0b987/ffffff?text=Body+Type+Saree" alt="Body Type Saree" class="w-full h-48 object-cover">
+                        <div class="p-6">
+                            <h3 class="text-xl font-semibold text-gray-800 mb-2">What Saree Suits You Based on Body Type</h3>
+                            <p class="text-gray-600 text-sm mb-4">Find the perfect drape and fabric to flatter your figure.</p>
+                            <a href="#" class="text-a0522d hover:underline font-medium">Read More <i class="fas fa-arrow-right text-sm ml-1"></i></a>
+                        </div>
+                    </div>
+                    <!-- Blog Post 3 -->
+                    <div class="bg-fdfaf6 rounded-lg shadow-md overflow-hidden">
+                        <img src="https://placehold.co/600x400/e0b987/ffffff?text=Color+Trends" alt="Color Trends" class="w-full h-48 object-cover">
+                        <div class="p-6">
+                            <h3 class="text-xl font-semibold text-gray-800 mb-2">Color Trends in Sarees 2025: What's Hot!</h3>
+                            <p class="text-gray-600 text-sm mb-4">Stay ahead of the curve with the latest color palettes.</p>
+                            <a href="#" class="text-a0522d hover:underline font-medium">Read More <i class="fas fa-arrow-right text-sm ml-1"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact / Custom Orders Section -->
+        <section id="contact" class="py-16 bg-fdfaf6 px-4">
+            <div class="container mx-auto">
+                <h2 class="text-4xl font-bold text-center mb-8 section-title text-gray-800">Contact Us & Custom Orders</h2>
+                <div class="max-w-3xl mx-auto bg-white rounded-lg shadow-xl p-8">
+                    <p class="text-center text-gray-700 mb-6">Have a question or a unique design idea? Fill out the form below or chat with us directly!</p>
+                    <form class="space-y-6">
+                        <div>
+                            <label for="name" class="block text-gray-700 text-sm font-semibold mb-2">Your Name</label>
+                            <input type="text" id="name" name="name" class="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-a0522d" placeholder="John Doe" required>
+                        </div>
+                        <div>
+                            <label for="email" class="block text-gray-700 text-sm font-semibold mb-2">Your Email</label>
+                            <input type="email" id="email" name="email" class="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-a0522d" placeholder="john.doe@example.com" required>
+                        </div>
+                        <div>
+                            <label for="design-idea" class="block text-gray-700 text-sm font-semibold mb-2">Design Idea / Message</label>
+                            <textarea id="design-idea" name="design-idea" rows="5" class="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-a0522d" placeholder="Describe your dream saree or inquiry..." required></textarea>
+                        </div>
+                        <div>
+                            <label for="occasion" class="block text-gray-700 text-sm font-semibold mb-2">Occasion (Optional)</label>
+                            <input type="text" id="occasion" name="occasion" class="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-a0522d" placeholder="Wedding, Festival, Casual">
+                        </div>
+                        <div>
+                            <label for="budget" class="block text-gray-700 text-sm font-semibold mb-2">Budget (Optional)</label>
+                            <input type="text" id="budget" name="budget" class="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-a0522d" placeholder="e.g., ₹5000 - ₹10000">
+                        </div>
+                        <button type="submit" class="w-full bg-a0522d hover:bg-red-800 text-white font-semibold py-3 px-6 rounded-full shadow-lg transition duration-300">
+                            Send Inquiry
+                        </button>
+                    </form>
+
+                    <div class="mt-8 text-center">
+                        <p class="text-gray-700 text-lg mb-4">Or connect with us instantly:</p>
+                        <a href="https://wa.me/1234567890" target="_blank" class="inline-flex items-center bg-green-500 hover:bg-green-600 text-white font-semibold py-3 px-6 rounded-full shadow-lg transition duration-300">
+                            <i class="fab fa-whatsapp text-xl mr-3"></i> Chat With Us on WhatsApp
+                        </a>
+                        <p class="text-gray-500 text-sm mt-6">
+                            <i class="fas fa-map-marker-alt mr-2"></i> Our Workshop Location (Google Map integration coming soon)
+                        </p>
+                        <div class="w-full h-64 bg-gray-200 rounded-lg mt-4 flex items-center justify-center text-gray-500">
+                            <!-- Placeholder for Google Map Embed -->
+                            <p>Google Map Placeholder</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Innovative Features Section (Placeholders) -->
+        <section id="innovative-features" class="py-16 bg-white px-4">
+            <div class="container mx-auto">
+                <h2 class="text-4xl font-bold text-center mb-8 section-title text-gray-800">Innovative Features</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="bg-fdfaf6 p-6 rounded-lg shadow-md text-center">
+                        <i class="fas fa-palette text-5xl text-a0522d mb-4"></i>
+                        <h3 class="text-xl font-semibold text-gray-800 mb-2">Saree Customizer</h3>
+                        <p class="text-gray-600 mb-4">Design your dream saree! Change colors, borders, and motifs.</p>
+                        <button class="bg-gray-200 hover:bg-gray-300 text-gray-800 font-semibold py-2 px-5 rounded-full transition duration-300">
+                            Try Customizer
+                        </button>
+                    </div>
+                    <div class="bg-fdfaf6 p-6 rounded-lg shadow-md text-center">
+                        <i class="fas fa-vr-cardboard text-5xl text-a0522d mb-4"></i>
+                        <h3 class="text-xl font-semibold text-gray-800 mb-2">Live Draping AR Try-On</h3>
+                        <p class="text-gray-600 mb-4">Virtually try on sarees using your webcam (advanced feature).</p>
+                        <button class="bg-gray-200 hover:bg-gray-300 text-gray-800 font-semibold py-2 px-5 rounded-full transition duration-300">
+                            Launch AR Try-On
+                        </button>
+                    </div>
+                    <div class="bg-fdfaf6 p-6 rounded-lg shadow-md text-center">
+                        <i class="fas fa-hat-wizard text-5xl text-a0522d mb-4"></i>
+                        <h3 class="text-xl font-semibold text-gray-800 mb-2">"Style Me" Assistant</h3>
+                        <p class="text-gray-600 mb-4">Get personalized saree suggestions based on your preferences.</p>
+                        <button class="bg-gray-200 hover:bg-gray-300 text-gray-800 font-semibold py-2 px-5 rounded-full transition duration-300">
+                            Get Styled
+                        </button>
+                    </div>
+                    <div class="bg-fdfaf6 p-6 rounded-lg shadow-md text-center">
+                        <i class="fas fa-exchange-alt text-5xl text-a0522d mb-4"></i>
+                        <h3 class="text-xl font-semibold text-gray-800 mb-2">Saree Swaps / Resale Platform</h3>
+                        <p class="text-gray-600 mb-4">Exchange or sell gently worn sarees for sustainable fashion.</p>
+                        <button class="bg-gray-200 hover:bg-gray-300 text-gray-800 font-semibold py-2 px-5 rounded-full transition duration-300">
+                            Explore Swaps
+                        </button>
+                    </div>
+                    <div class="bg-fdfaf6 p-6 rounded-lg shadow-md text-center">
+                        <i class="fas fa-hourglass-half text-5xl text-a0522d mb-4"></i>
+                        <h3 class="text-xl font-semibold text-gray-800 mb-2">Festive Launch Countdown</h3>
+                        <p class="text-gray-600 mb-4">Exciting new collections dropping soon! Stay tuned.</p>
+                        <div class="text-3xl font-bold text-gray-800">
+                            <span id="countdown-days">00</span>d <span id="countdown-hours">00</span>h <span id="countdown-minutes">00</span>m <span id="countdown-seconds">00</span>s
+                        </div>
+                    </div>
+                    <div class="bg-fdfaf6 p-6 rounded-lg shadow-md text-center">
+                        <i class="fas fa-receipt text-5xl text-a0522d mb-4"></i>
+                        <h3 class="text-xl font-semibold text-gray-800 mb-2">Digital Invoice + Wishlist</h3>
+                        <p class="text-gray-600 mb-4">Manage your purchases and save your favorite sarees.</p>
+                        <button class="bg-gray-200 hover:bg-gray-300 text-gray-800 font-semibold py-2 px-5 rounded-full transition duration-300">
+                            My Account
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Growth Boosters (Placeholders) -->
+        <section id="growth-boosters" class="py-16 bg-fdfaf6 px-4">
+            <div class="container mx-auto">
+                <h2 class="text-4xl font-bold text-center mb-8 section-title text-gray-800">Growth Boosters</h2>
+                <div class="flex flex-wrap justify-center gap-8">
+                    <div class="bg-white p-6 rounded-lg shadow-md text-center flex-1 min-w-[280px] max-w-[350px]">
+                        <i class="fas fa-search-dollar text-4xl text-a0522d mb-3"></i>
+                        <h3 class="text-xl font-semibold text-gray-800 mb-2">SEO Optimized Pages</h3>
+                        <p class="text-gray-600 text-sm">Ensuring high visibility with detailed meta tags and keyword-rich content.</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow-md text-center flex-1 min-w-[280px] max-w-[350px]">
+                        <i class="fas fa-envelope-open-text text-4xl text-a0522d mb-3"></i>
+                        <h3 class="text-xl font-semibold text-gray-800 mb-2">Newsletter Pop-up</h3>
+                        <p class="text-gray-600 text-sm">Capture emails for new launches, styling tips, and exclusive sales.</p>
+                        <button id="open-newsletter-modal" class="mt-4 bg-a0522d hover:bg-red-800 text-white font-semibold py-2 px-5 rounded-full text-sm transition duration-300">
+                            Subscribe Now
+                        </button>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow-md text-center flex-1 min-w-[280px] max-w-[350px]">
+                        <i class="fas fa-gift text-4xl text-a0522d mb-3"></i>
+                        <h3 class="text-xl font-semibold text-gray-800 mb-2">Referral & Loyalty Program</h3>
+                        <p class="text-gray-600 text-sm">Reward customers for referrals and purchases.</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow-md text-center flex-1 min-w-[280px] max-w-[350px]">
+                        <i class="fas fa-truck text-4xl text-a0522d mb-3"></i>
+                        <h3 class="text-xl font-semibold text-gray-800 mb-2">Order Tracking System</h3>
+                        <p class="text-gray-600 text-sm">Allow customers to easily track their orders.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-12 px-6">
+        <div class="container mx-auto grid grid-cols-1 md:grid-cols-4 gap-8">
+            <div>
+                <h4 class="text-xl font-bold mb-4">ShobhaSareesOfficial</h4>
+                <p class="text-gray-400 text-sm">Weaving stories in six yards. Discover the timeless elegance of handmade sarees, crafted with passion.</p>
+            </div>
+            <div>
+                <h4 class="text-xl font-semibold mb-4">Quick Links</h4>
+                <ul class="space-y-2">
+                    <li><a href="#home" class="text-gray-400 hover:text-white transition duration-300">Home</a></li>
+                    <li><a href="#collection" class="text-gray-400 hover:text-white transition duration-300">Collection</a></li>
+                    <li><a href="#store" class="text-gray-400 hover:text-white transition duration-300">Shop</a></li>
+                    <li><a href="#blog" class="text-gray-400 hover:text-white transition duration-300">Blog</a></li>
+                    <li><a href="#contact" class="text-gray-400 hover:text-white transition duration-300">Contact</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="text-xl font-semibold mb-4">Support</h4>
+                <ul class="space-y-2">
+                    <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">FAQs</a></li>
+                    <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">Shipping & Returns</a></li>
+                    <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">Privacy Policy</a></li>
+                    <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">Terms of Service</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="text-xl font-semibold mb-4">Connect With Us</h4>
+                <div class="flex space-x-4 mb-4">
+                    <a href="https://www.instagram.com/shobhasareesofficial" target="_blank" class="text-gray-400 hover:text-white text-2xl transition duration-300"><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.pinterest.com/shobhasareesofficial" target="_blank" class="text-gray-400 hover:text-white text-2xl transition duration-300"><i class="fab fa-pinterest-p"></i></a>
+                    <a href="https://wa.me/1234567890" target="_blank" class="text-gray-400 hover:text-white text-2xl transition duration-300"><i class="fab fa-whatsapp"></i></a>
+                    <a href="https://www.youtube.com/@shobhasareesofficial" target="_blank" class="text-gray-400 hover:text-white text-2xl transition duration-300"><i class="fab fa-youtube"></i></a>
+                    <a href="https://www.facebook.com/shobhasareesofficial" target="_blank" class="text-gray-400 hover:text-white text-2xl transition duration-300"><i class="fab fa-facebook-f"></i></a>
+                </div>
+                <p class="text-gray-400 text-sm">&copy; 2025 ShobhaSareesOfficial. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Newsletter Pop-up Modal -->
+    <div id="newsletter-modal" class="newsletter-modal">
+        <div class="newsletter-modal-content">
+            <span class="close-button" id="close-newsletter-modal">&times;</span>
+            <h3 class="text-3xl font-bold text-gray-800 mb-4">Join Our Newsletter!</h3>
+            <p class="text-gray-700 mb-6">Get exclusive updates on new collections, styling tips, and special offers directly to your inbox.</p>
+            <form id="newsletter-form" class="space-y-4">
+                <div>
+                    <input type="email" id="newsletter-email" name="email" class="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-a0522d" placeholder="Your Email Address" required>
+                </div>
+                <button type="submit" class="w-full bg-a0522d hover:bg-red-800 text-white font-semibold py-3 px-6 rounded-full shadow-lg transition duration-300">
+                    Subscribe
+                </button>
+            </form>
+            <p class="text-sm text-gray-500 mt-4">We respect your privacy. Unsubscribe anytime.</p>
+        </div>
+    </div>
+
+    <script>
+        // Mobile menu toggle
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Close mobile menu when a link is clicked
+        mobileMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Newsletter Modal Logic
+        const newsletterModal = document.getElementById('newsletter-modal');
+        const openNewsletterModalButton = document.getElementById('open-newsletter-modal');
+        const closeNewsletterModalButton = document.getElementById('close-newsletter-modal');
+        const newsletterForm = document.getElementById('newsletter-form');
+
+        // Open modal
+        openNewsletterModalButton.addEventListener('click', () => {
+            newsletterModal.style.display = 'flex'; // Use flex to center content
+        });
+
+        // Close modal when close button is clicked
+        closeNewsletterModalButton.addEventListener('click', () => {
+            newsletterModal.style.display = 'none';
+        });
+
+        // Close modal when clicking outside of the modal content
+        window.addEventListener('click', (event) => {
+            if (event.target == newsletterModal) {
+                newsletterModal.style.display = 'none';
+            }
+        });
+
+        // Handle newsletter form submission (placeholder)
+        newsletterForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const email = document.getElementById('newsletter-email').value;
+            console.log(`Newsletter subscribed with email: ${email}`);
+            // In a real application, you would send this email to your Mailchimp/ConvertKit integration
+            alert('Thank you for subscribing to our newsletter!'); // Using alert for boilerplate, replace with custom UI
+            newsletterModal.style.display = 'none';
+            newsletterForm.reset();
+        });
+
+        // Countdown Timer Logic (for Festive Launch Countdown)
+        function setupCountdown() {
+            // Set the date we're counting down to (e.g., Diwali special: November 1, 2025)
+            const countdownDate = new Date("Nov 1, 2025 00:00:00").getTime();
+
+            // Update the countdown every 1 second
+            const x = setInterval(function() {
+                const now = new Date().getTime();
+                const distance = countdownDate - now;
+
+                // Time calculations for days, hours, minutes and seconds
+                const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+                // Display the result in the elements
+                document.getElementById("countdown-days").innerHTML = String(days).padStart(2, '0');
+                document.getElementById("countdown-hours").innerHTML = String(hours).padStart(2, '0');
+                document.getElementById("countdown-minutes").innerHTML = String(minutes).padStart(2, '0');
+                document.getElementById("countdown-seconds").innerHTML = String(seconds).padStart(2, '0');
+
+                // If the countdown is finished, write some text
+                if (distance < 0) {
+                    clearInterval(x);
+                    document.getElementById("countdown-days").innerHTML = "00";
+                    document.getElementById("countdown-hours").innerHTML = "00";
+                    document.getElementById("countdown-minutes").innerHTML = "00";
+                    document.getElementById("countdown-seconds").innerHTML = "00";
+                    // You can display a "Launched!" message or hide the section
+                }
+            }, 1000);
+        }
+
+        // Call the countdown setup function when the page loads
+        window.addEventListener('load', setupCountdown);
+
+        // Placeholder for form submission (Contact Form)
+        document.querySelector('#contact form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            // In a real application, you would send this form data to a backend (e.g., Firebase, Node.js)
+            console.log('Contact form submitted!');
+            alert('Your inquiry has been sent! We will get back to you shortly.'); // Using alert for boilerplate, replace with custom UI
+            this.reset(); // Clear the form
+        });
+
+    </script>
+</body>
+</html>
